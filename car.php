@@ -106,8 +106,10 @@ $cars = array($porsche, $ford, $lexus, $mercedes);
 <body>
   <div class="container">
     <?php
+      $counter = 0;
       foreach ($cars as $specific_car) {
         if ($specific_car->certainSpecs($user_price, $user_miles)) {
+          $counter++;
           $car_price = $specific_car->getPrice();
           $car_make = $specific_car->getMake();
           $car_miles = $specific_car->getMiles();
@@ -118,8 +120,11 @@ $cars = array($porsche, $ford, $lexus, $mercedes);
                 <p>$$car_price</p>
               ";
         }
-
       }
+        if ($counter == 0) {
+          echo "<p>Your search matched zero results</p>";
+        }
+
     ?>
   </div>
 </body>
