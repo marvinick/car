@@ -6,11 +6,13 @@ class Car
   private $make_model;
   private $price;
   private $miles;
+  private $picture;
 
-  function __construct($make_model, $price, $miles) {
+  function __construct($make_model, $price, $miles, $picture) {
     $this->make_model = $make_model;
     $this->price = $price;
     $this->miles = $miles;
+    $this->picture = $picture;
 
   }
 
@@ -26,6 +28,10 @@ class Car
     return $this->miles;
   }
 
+  function getPicture() {
+    return $this->picture;
+  }
+
   function setPrice($new_price) {
     $float_price = (float) $new_price;
     if ($float_price !=0) {
@@ -38,10 +44,10 @@ class Car
 
 
 
-$porsche = new Car("2014 Porsche 911", 114991, 7864);
-$ford = new Car("2011 Ford F450", 55995, 14241);
-$lexus = new Car("2013 Lexus RX 350", 44700, 20000);
-$mercedes = new Car("Mercedes Benz CLS550", 39900, 37979);
+$porsche = new Car("2014 Porsche 911", 114991, 7864, "img/porsche.jpg");
+$ford = new Car("2011 Ford F450", 55995, 14241, "/img/ford.jpg");
+$lexus = new Car("2013 Lexus RX 350", 44700, 20000, "/img/lexus.jpg");
+$mercedes = new Car("Mercedes Benz CLS550", 39900, 37979, "/img/cls550.jpg");
 $mercedes->setPrice("35000.125");
 $porsche->setPrice("hotdog");
 
@@ -81,7 +87,9 @@ $cars = array($porsche, $ford, $lexus, $mercedes);
         $car_price = $specific_car->getPrice();
         $car_make = $specific_car->getMake();
         $car_miles = $specific_car->getMiles();
-        echo "<p>$car_make</p>
+        $car_picture = $specific_car->getPicture();
+        echo "<div><img src='$car_picture'</div>
+              <p>$car_make</p>
               <p>$car_miles miles</p>
               <p>$$car_price</p>
         ";
