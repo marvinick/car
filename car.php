@@ -1,5 +1,8 @@
 <?php
 
+$user_price = $_GET["user_price"];
+$user_miles = $_GET["user_miles"];
+
 class Car
 {
 
@@ -7,14 +10,20 @@ class Car
   private $price;
   private $miles;
   private $picture;
+  // public $user_price;
+  // public $user_miles;
+
 
   function __construct($make_model, $price, $miles, $picture) {
     $this->make_model = $make_model;
     $this->price = $price;
     $this->miles = $miles;
     $this->picture = $picture;
-
   }
+
+  // $user_price = $_GET["user_price"];
+  // $user_miles = $_GET["user_miles"];
+
 
   function getPrice() {
     return $this->price;
@@ -40,9 +49,22 @@ class Car
     }
   }
 
+  function certainSpecs($user_price, $user_miles) {
+    // $user_price = $_GET["user_price"];
+    // $user_miles = $_GET["user_miles"];
+    if (($this->price <= $user_price) && ($this->miles <= $user_miles)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+
 }
 
-
+// $user_price = $_GET["user_price"];
+// $user_miles = $_GET["user_miles"];
 
 $porsche = new Car("2014 Porsche 911", 114991, 7864, "img/porsche.jpg");
 $ford = new Car("2011 Ford F450", 55995, 14241, "/img/ford.jpg");
@@ -75,6 +97,7 @@ $porsche->setPrice("hotdog");
 
 $cars = array($porsche, $ford, $lexus, $mercedes);
 
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -84,15 +107,17 @@ $cars = array($porsche, $ford, $lexus, $mercedes);
   <div class="container">
     <?php
       foreach ($cars as $specific_car) {
-        $car_price = $specific_car->getPrice();
-        $car_make = $specific_car->getMake();
-        $car_miles = $specific_car->getMiles();
-        $car_picture = $specific_car->getPicture();
-        echo "<div><img src='$car_picture'</div>
-              <p>$car_make</p>
-              <p>$car_miles miles</p>
-              <p>$$car_price</p>
-        ";
+        if ($specific_car->certainSpecs($user_price, $user_miles)) {
+          $car_price = $specific_car->getPrice();
+          $car_make = $specific_car->getMake();
+          $car_miles = $specific_car->getMiles();
+          $car_picture = $specific_car->getPicture();
+          echo "<div><img src='$car_picture'</div>
+                <p>$car_make</p>
+                <p>$car_miles miles</p>
+                <p>$$car_price</p>
+              ";
+        }
 
       }
     ?>
