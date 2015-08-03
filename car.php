@@ -3,9 +3,9 @@
 class Car
 {
 
-  public $make_model;
+  private $make_model;
   private $price;
-  public $miles;
+  private $miles;
 
   function __construct($make_model, $price, $miles) {
     $this->make_model = $make_model;
@@ -16,6 +16,14 @@ class Car
 
   function getPrice() {
     return $this->price;
+  }
+
+  function getMake() {
+    return $this->make_model;
+  }
+
+  function getMiles() {
+    return $this->miles;
   }
 
   function setPrice($new_price) {
@@ -71,8 +79,10 @@ $cars = array($porsche, $ford, $lexus, $mercedes);
     <?php
       foreach ($cars as $specific_car) {
         $car_price = $specific_car->getPrice();
-        echo "<p>$specific_car->make_model</p>
-              <p>$specific_car->miles miles</p>
+        $car_make = $specific_car->getMake();
+        $car_miles = $specific_car->getMiles();
+        echo "<p>$car_make</p>
+              <p>$car_miles miles</p>
               <p>$$car_price</p>
         ";
 
