@@ -32,3 +32,21 @@ $mercedes->miles = 37979;
 $cars = array($porsche, $ford, $lexus, $mercedes);
 
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <div class="container">
+    <?php
+      foreach ($cars as $specific_car) {
+        echo "<p>$specific_car->make_model</p>
+              <p>$specific_car->miles miles</p>
+              <p>$$specific_car->price</p>
+        ";
+
+      }
+    ?>
+  </div>
+</body>
+</html>
