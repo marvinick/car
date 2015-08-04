@@ -1,7 +1,6 @@
 <?php
 
-// $user_price = $_GET["user_price"];
-// $user_miles = $_GET["user_miles"];
+
 
   class Car
   {
@@ -54,30 +53,16 @@
       }
     }
 
-    function searchCars() {
-      $counter = 0;
-      $whatToReturn = "";
-      foreach ($cars as $specific_car) {
-        if ($specific_car->certainSpecs($user_price, $user_miles)) {
-          $counter++;
-          $car_price = $specific_car->getPrice();
-          $car_make = $specific_car->getMake();
-          $car_miles = $specific_car->getMiles();
-          $car_picture = $specific_car->getPicture();
-          $whatToReturn = $whatToReturn + "<div><img src='$car_picture'</div>
-                <p>$car_make</p>
-                <p>$car_miles miles</p>
-                <p>$$car_price</p>
-              ";
-        }
+  }
+
+  function searchCars(array $cars, $user_price, $user_miles) {
+    $arrayOfCars = array();
+    foreach ($cars as $specific_car) {
+      if ($specific_car->certainSpecs($user_price, $user_miles)) {
+        array_push($arrayOfCars, $specific_car);
       }
-        if ($counter == 0) {
-          $whatToReturn = '<p>Your search matched zero results</p>';
-        }
-        echo $whatToReturn;
     }
-
-
+      return $arrayOfCars;
   }
 
 ?>
